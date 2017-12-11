@@ -1215,12 +1215,21 @@ var GoFishConsole = (function () {
     GoFishConsole.prototype.run = function () {
         this.initialize();
         this.welcomePlayer();
+        this.game.initialDeal();
         updateDisplay(this.game.tableString());
+    };
+    GoFishConsole.prototype.getValue = function (passedValue) {
+        for (var value in PlayingValue) {
+            if (value.toString() == passedValue) {
+                return value;
+            }
+        }
     };
     GoFishConsole.prototype.playerAsks = function () {
         var textAsk = this.getInput();
         updateDisplay("You asked for " + textAsk);
         //Convert String to PlayingValue
+        this.reqValue = this.getValue(textAsk);
         //Assign to reqValue
         if (this.game.playerAskForCard(this.reqValue)) {
             updateDisplay("You got what you wanted!");
@@ -1298,7 +1307,6 @@ var GoFishConsole = (function () {
 var Casino = (function () {
     function Casino() {
         this.havePlayer = false;
-        this.havePlayer = false;
     }
     Casino.prototype.initialize = function () {
         this.displayElement = document.getElementById("display");
@@ -1321,7 +1329,7 @@ var Casino = (function () {
             this.inputElement.innerHTML =
                 '<input type="button" value="Craps" id="craps_button" onclick="casino.craps.run()"></br>' +
                     '<input type="button" value="BlackJack" id="blackjack_button" onclick="casino.blackjack.run()"></br>' +
-                    '<input type="button" value="GoFish" id="gofish_button" onclick="casino.notImplemented()"></br>';
+                    '<input type="button" value="GoFish" id="gofish_button" onclick="casino.goFish.run()"></br>';
         }
         else {
             this.initialize();

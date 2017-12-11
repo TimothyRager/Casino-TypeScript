@@ -8,10 +8,9 @@ class Casino {
 
     craps: CrapsConsole;
     blackjack: BlackJackConsole;
+    goFish: GoFishConsole;
     havePlayer: boolean = false;
 
-    goFish: GoFishConsole;
-    havePlayer:boolean=false;
 ////////
     inputElement: any;
     displayElement: any;
@@ -43,7 +42,7 @@ class Casino {
             this.inputElement.innerHTML =
                 '<input type="button" value="Craps" id="craps_button" onclick="casino.craps.run()"></br>' +
                 '<input type="button" value="BlackJack" id="blackjack_button" onclick="casino.blackjack.run()"></br>' +
-                '<input type="button" value="GoFish" id="gofish_button" onclick="casino.notImplemented()"></br>';
+                '<input type="button" value="GoFish" id="gofish_button" onclick="casino.goFish.run()"></br>';
         } else {
             this.initialize();
         }

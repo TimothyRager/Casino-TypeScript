@@ -41,7 +41,17 @@ class GoFishConsole{
     run():void{
         this.initialize();
         this.welcomePlayer();
+        this.game.initialDeal();
         updateDisplay(this.game.tableString());
+    }
+
+    private getValue(passedValue:string):PlayingValue{
+
+        for (let value in PlayingValue) {
+            if (value.toString()==passedValue){
+                return (<PlayingValue>value);
+            }
+        }
     }
 
     playerAsks():void{
@@ -49,6 +59,7 @@ class GoFishConsole{
 
         updateDisplay("You asked for "+textAsk);
         //Convert String to PlayingValue
+        this.reqValue=this.getValue(textAsk);
         //Assign to reqValue
         if(this.game.playerAskForCard(this.reqValue)){
             updateDisplay("You got what you wanted!");
